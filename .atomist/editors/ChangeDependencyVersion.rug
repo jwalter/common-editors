@@ -1,0 +1,25 @@
+@description "uses a template to create samplefile.txt"
+@tag "documentation"
+editor ChangeDependencyVersion
+
+@displayName "Dependency Artifact"
+@description "the dependency artifact_id"
+@validInput "free text"
+param artifact_id: @artifact_id
+
+@displayName "Dependency Group"
+@description "the dependency group_id"
+@validInput "free text"
+param group_id: @group_id
+
+@displayName "New version"
+@description "the latest and greatest version you would like to depend on"
+@validInput "version"
+param new_version: @semantic_version
+
+let sampleTemplateTemplate = "ChangeDependencyVersionTemplate.vm"
+
+/* Example showing applying a simple template being applied */
+with Project p
+  with Pom
+    do addOrReplaceDependencyVersion groupId=group_id artifactId=artifact_id newVersion=new_version
